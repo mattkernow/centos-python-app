@@ -15,4 +15,6 @@ ADD . python-app
 
 RUN python3.6 -m pip install -r python-app/requirements.txt
 
-CMD ["python3.6", "python-app/app/app.py"]
+WORKDIR /home/python-app
+
+CMD ["python3.6", "-m", "app.application"]
