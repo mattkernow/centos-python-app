@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-cd /home/python-app
+cd /home/pythonuser/python-app
 
-celery worker -D -A app.task
+python3.6 -m celery worker -D -A app.task
 
 python3.6 -m app.application

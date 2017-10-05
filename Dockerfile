@@ -1,6 +1,8 @@
 FROM centos:latest
 
-WORKDIR /home
+RUN useradd -ms /bin/bash pythonuser
+
+WORKDIR /home/pythonuser
 
 RUN  yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 
@@ -15,6 +17,8 @@ ADD . python-app
 
 RUN python3.6 -m pip install -r python-app/requirements.txt
 
-WORKDIR /home/python-app
+WORKDIR /home/pythonuser/python-app
 
-CMD ["python3.6", "-m", "app.application"]
+RUN ["chmod", "+x", "start_worker.sh"]
+
+CMD ["./start_worker.sh"]
